@@ -3,17 +3,17 @@
 @section('content')
     <h1>Create new user</h1>
 
-    {{ Form::open(['route' => 'users.store']) }}
+    {{ Form::open(['route' => 'sessions.store']) }}
         <div>
             {{ Form::label('username', 'Username: ') }}
             {{ Form::text('username') }}
-            {{ $errors->first('username') }}
+            <span>{{ $errors->first('username') }}</span>
         </div>
 
         <div>
             {{ Form::label('password', 'Password: ') }}
             {{ Form::password('password') }}
-            {{ $errors->first('password') }}
+            <span>{{ $errors->first('password') }}</span>
         </div>
 
         <div>

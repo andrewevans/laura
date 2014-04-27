@@ -12,14 +12,14 @@ class SessionsController extends BaseController {
         if (Auth::attempt(Input::only('email', 'password'))) {
             return 'Welcome ' . Auth::user()->username;
         }
-            return Redirect::back()->withInput();
+            return Redirect::back()->withInput()->withErrors(array('username' => 'Login field is required.'));
     }
 
     public function destroy()
     {
         Auth::logout();
 
-        return Redirect::route('sessions.create');
+        return Redirect::to('login');
     }
 
 

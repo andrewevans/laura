@@ -10,10 +10,12 @@
     <div>
         {{ Form::label('email', 'Email:') }}
         {{ Form::email('email') }}
+        <span>{{ $errors->first('username') }}</span>
     </div>
     <div>
         {{ Form::label('password', 'Password:') }}
         {{ Form::password('password') }}
+        <span>{{ $errors->first('password') }}</span>
     </div>
     <div>
         {{ Form::submit('Login') }}

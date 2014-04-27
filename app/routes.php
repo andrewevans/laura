@@ -29,10 +29,17 @@ Route::get('/', function()
     return 'Done';
 });
 
+Route::get('sessions', function()
+{
+    return Redirect::to('/admin');
+});
+
 Route::get('admin', function()
 {
     return 'Admin Page';
 })->before('auth');
+
+
 /*
 Route::get('/', function()
 {

@@ -1,0 +1,1 @@
+SEO-friendly URLS with ONE url, where /controller/action forwards to /alias
