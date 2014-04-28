@@ -17,7 +17,8 @@ Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 Route::resource('users','UsersController');
 Route::resource('sessions','SessionsController');
-
+Route::resource('/','HomeController');
+/*
 Route::get('/', function()
 {
     User::create([
@@ -28,6 +29,7 @@ Route::get('/', function()
 
     return 'Done';
 });
+*/
 
 Route::get('sessions', function()
 {

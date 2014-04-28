@@ -47,7 +47,11 @@ class UsersController extends \BaseController {
             return Redirect::back()->withInput()->withErrors($this->user->errors);
         }
 
-        $this->user->save();
+        $user = new User;
+        $user->username = Input::get('username');
+        $user->email = Input::get('email');
+        $user->password = Hash::make(Input::get('password')); // If you want passwords one way hashed
+        $user->save();
 
         return Redirect::route('users.index');
 	}
@@ -76,19 +80,43 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
-	}
+        // get the nerd
+        $user = User::find($id);
+
+        // show the edit form and pass the nerd
+        return View::make('users.edit')
+            ->with('user', $user);
+
+    }
 
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  int  $username
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($username)
 	{
 		//
+        $user = User::whereUsername($username)->first();
+
+        $input = Input::all();
+
+        //$user = User::find($id);
+
+        if ( ! $this->user->fill($input)->isValid())
+        {
+            return Redirect::back()->withInput()->withErrors($this->user->errors);
+        }
+
+//        $user->username = $input['username'];
+        $user->email = $input['email'];
+        $user->password = Hash::make($input['password']);
+
+        $user->save();
+
+        return View::make('users.show', ['user' => $user]);
 	}
 
 
