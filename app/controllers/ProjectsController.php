@@ -45,7 +45,32 @@ class ProjectsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $input = Input::all();
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'name'       => 'required',
+            'cost'      => 'required|numeric',
+        );
+        $validator = Validator::make($input, $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('projects/create')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $project = new Project;
+            $project->name       = Input::get('name');
+            $project->cost      = Input::get('cost');
+            $project->description = Input::get('description');
+            $project->save();
+
+            // redirect
+            Session::flash('message', 'Successfully created PROJECT!');
+            return Redirect::to('projects');
+        }
 	}
 
 
