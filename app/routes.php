@@ -18,6 +18,7 @@ Route::get('logout', 'SessionsController@destroy');
 Route::resource('users','UsersController');
 Route::resource('sessions','SessionsController');
 Route::resource('/','HomeController');
+Route::resource('nerds', 'NerdController');
 /*
 Route::get('/', function()
 {
