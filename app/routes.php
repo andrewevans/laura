@@ -19,6 +19,8 @@ Route::resource('users','UsersController');
 Route::resource('sessions','SessionsController');
 Route::resource('/','HomeController');
 Route::resource('nerds', 'NerdController');
+Route::resource('projects', 'ProjectsController');
+Route::resource('partnerships', 'PartnershipsController');
 /*
 Route::get('/', function()
 {

@@ -19,7 +19,7 @@
             <td>{{ $value->id }}</td>
             <td>{{ $value->name }}</td>
             <td>{{ $value->email }}</td>
-            <td>{{ $value->nerd_level }}</td>
+            <td>{{ $value->nerd_level }} <pre>{{ $value->projects }}</pre></td>
 
             <!-- we will also add show, edit, and delete buttons -->
             <td>

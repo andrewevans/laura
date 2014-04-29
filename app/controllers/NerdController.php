@@ -2,6 +2,13 @@
 
 class NerdController extends \BaseController {
 
+    protected $nerd;
+
+    public function __construct(Nerd $nerd)
+    {
+        $this->nerd = $nerd;
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,8 +16,10 @@ class NerdController extends \BaseController {
 	 */
 	public function index()
 	{
+        $nerds = $this->nerd->all();
+
         // get all the nerds
-        $nerds = Nerd::all();
+        ///$nerds = Nerd::all();
 
         // load the view and pass the nerds
         return View::make('nerds.index')
@@ -37,6 +46,7 @@ class NerdController extends \BaseController {
 	 */
 	public function store()
 	{
+        $input = Input::all();
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
@@ -44,7 +54,12 @@ class NerdController extends \BaseController {
             'email'      => 'required|email',
             'nerd_level' => 'required|numeric'
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make($input, $rules);
+
+        if ( ! $this->nerd->fill($input)->isValid())
+        {
+            return Redirect::back()->withInput()->withErrors($this->nerd->errors);
+        }
 
         // process the login
         if ($validator->fails()) {
@@ -108,6 +123,10 @@ class NerdController extends \BaseController {
 	 */
 	public function update($id)
 	{
+        $nerd = Nerd::whereId($id)->first();
+
+        $input = Input::all();
+
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
@@ -115,7 +134,12 @@ class NerdController extends \BaseController {
             'email'      => 'required|email',
             'nerd_level' => 'required|numeric'
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make($input, $rules);
+
+        if ( ! $this->nerd->fill($input)->isValid())
+        {
+            return Redirect::back()->withInput()->withErrors($this->nerd->errors);
+        }
 
         // process the login
         if ($validator->fails()) {
@@ -124,7 +148,7 @@ class NerdController extends \BaseController {
                 ->withInput(Input::except('password'));
         } else {
             // store
-            $nerd = Nerd::find($id);
+            //$nerd = Nerd::find($id);
             $nerd->name       = Input::get('name');
             $nerd->email      = Input::get('email');
             $nerd->nerd_level = Input::get('nerd_level');
