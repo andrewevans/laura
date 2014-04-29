@@ -10,6 +10,7 @@
             <td>Name</td>
             <td>Email</td>
             <td>Nerd Level</td>
+            <td>Current Projects</td>
             <td>Actions</td>
         </tr>
         </thead>
@@ -19,7 +20,12 @@
             <td>{{ $value->id }}</td>
             <td>{{ $value->name }}</td>
             <td>{{ $value->email }}</td>
-            <td>{{ $value->nerd_level }} <pre>{{ $value->projects }}</pre></td>
+            <td>{{ $value->nerd_level }}</td>
+            <td>
+                @foreach($value->projects as $project)
+                <pre>{{ $project->name }}</pre>
+                @endforeach
+            </td>
 
             <!-- we will also add show, edit, and delete buttons -->
             <td>
