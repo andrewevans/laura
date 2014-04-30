@@ -3,6 +3,7 @@
 class NerdController extends \BaseController {
 
     protected $nerd;
+    protected $projects;
 
     public function __construct(Nerd $nerd)
     {
@@ -108,11 +109,22 @@ class NerdController extends \BaseController {
 	{
         // get the nerd
         $nerd = Nerd::find($id);
+        $all_projects = Project::all();
+        $project_options = Project::lists('name','id');
+
+        $partnerships = array();
+
+        foreach ($nerd->projects as $partnership) {
+            $partnerships[] = $partnership->id;
+        }
 
         // show the edit form and pass the nerd
         return View::make('nerds.edit')
-            ->with('nerd', $nerd);
-	}
+            ->with('nerd', $nerd)
+            ->with('project_options', $project_options)
+            ->with('all_projects', $all_projects)
+            ->with('partnerships', $partnerships);
+    }
 
 
 	/**
@@ -152,6 +164,7 @@ class NerdController extends \BaseController {
             $nerd->name       = Input::get('name');
             $nerd->email      = Input::get('email');
             $nerd->nerd_level = Input::get('nerd_level');
+            $nerd->projects()->sync(Input::get('project'));
             $nerd->save();
 
             // redirect
