@@ -54,12 +54,12 @@ class NerdController extends \BaseController {
             return Redirect::back()->withInput()->withErrors($this->nerd->errors);
         }
 
-            // store
-            $nerd = new Nerd;
-            $nerd->name       = Input::get('name');
-            $nerd->email      = Input::get('email');
-            $nerd->nerd_level = Input::get('nerd_level');
-            $nerd->save();
+        // store
+        $nerd = new Nerd;
+        $nerd->name       = Input::get('name');
+        $nerd->email      = Input::get('email');
+        $nerd->nerd_level = Input::get('nerd_level');
+        $nerd->save();
 
         // redirect
         Session::flash('message', 'Successfully created nerd!');
@@ -130,17 +130,17 @@ class NerdController extends \BaseController {
             return Redirect::back()->withInput()->withErrors($this->nerd->errors);
         }
 
-            // store
-            //$nerd = Nerd::find($id);
-            $nerd->name       = Input::get('name');
-            $nerd->email      = Input::get('email');
-            $nerd->nerd_level = Input::get('nerd_level');
-            $nerd->projects()->sync(Input::get('project'));
-            $nerd->save();
+        // store
+        //$nerd = Nerd::find($id);
+        $nerd->name       = Input::get('name');
+        $nerd->email      = Input::get('email');
+        $nerd->nerd_level = Input::get('nerd_level');
+        $nerd->projects()->sync(Input::get('project'));
+        $nerd->save();
 
-            // redirect
-            Session::flash('message', 'Successfully updated nerd!');
-            return Redirect::to('nerds');
+        // redirect
+        Session::flash('message', 'Successfully updated nerd!');
+        return Redirect::to('nerds');
 	}
 
 
