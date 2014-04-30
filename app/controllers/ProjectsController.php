@@ -82,7 +82,12 @@ class ProjectsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        // get the nerd
+        $projects = Project::find($id);
+
+        // show the view and pass the nerd to it
+        return View::make('projects.show')
+            ->with('project', $projects);
 	}
 
 
@@ -94,7 +99,12 @@ class ProjectsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        // get the nerd
+        $project = Project::find($id);
+
+        // show the edit form and pass the nerd
+        return View::make('projects.edit')
+            ->with('project', $project);
 	}
 
 
