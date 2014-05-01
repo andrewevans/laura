@@ -9,7 +9,8 @@
         <td>ID</td>
         <td>Project name</td>
         <td>Cost</td>
-        <td>Description</td>
+        <td width="200">Description</td>
+        <td>Nerds involved</td>
         <td>Actions</td>
     </tr>
     </thead>
@@ -20,6 +21,11 @@
         <td>{{ $value->name }}</td>
         <td>{{ $value->cost }}</td>
         <td>{{ $value->description }}</td>
+        <td>
+            @foreach($value->nerds as $nerd)
+            <pre>{{ link_to("/nerds/{$nerd->id}", $nerd->name) }}</pre>
+            @endforeach
+        </td>
 
         <!-- we will also add show, edit, and delete buttons -->
         <td>

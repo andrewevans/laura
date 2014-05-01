@@ -34,4 +34,9 @@ class Project extends Eloquent
         return false;
     }
 
+    public function nerds()
+    {
+        return $this->belongsToMany('Nerd','partnerships');
+    }
+
 }
