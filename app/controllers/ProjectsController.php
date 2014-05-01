@@ -51,16 +51,17 @@ class ProjectsController extends \BaseController {
         {
             return Redirect::back()->withInput()->withErrors($this->project->errors);
         }
-            // store
-            $project = new Project;
-            $project->name       = Input::get('name');
-            $project->cost      = Input::get('cost');
-            $project->description = Input::get('description');
-            $project->save();
 
-            // redirect
-            Session::flash('message', 'Successfully created PROJECT!');
-            return Redirect::to('projects');
+        // store
+        $project = new Project;
+        $project->name       = Input::get('name');
+        $project->cost      = Input::get('cost');
+        $project->description = Input::get('description');
+        $project->save();
+
+        // redirect
+        Session::flash('message', 'Successfully created PROJECT!');
+        return Redirect::to('projects');
 
 	}
 
