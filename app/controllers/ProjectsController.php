@@ -116,7 +116,25 @@ class ProjectsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $project = Project::whereId($id)->first();
+
+        $input = Input::all();
+
+        if ( ! $this->project->fill($input)->isValid())
+        {
+            return Redirect::back()->withInput()->withErrors($this->project->errors);
+        }
+
+        // store
+        //$nerd = Nerd::find($id);
+        $project->name       = Input::get('name');
+        $project->cost      = Input::get('cost');
+        $project->description = Input::get('description');
+        $project->save();
+
+        // redirect
+        Session::flash('message', 'Successfully updated PROJECT!');
+        return Redirect::to('projects');
 	}
 
 

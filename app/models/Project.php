@@ -24,7 +24,6 @@ class Project extends Eloquent
 //        'email.email' => "That's not an EMAIL! Try a well-formed email.",
     ];
 
-    /*
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules,  static::$messages);
@@ -34,6 +33,5 @@ class Project extends Eloquent
         $this->errors = $validation->messages();
         return false;
     }
-    */
 
 }
