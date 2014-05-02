@@ -14,7 +14,7 @@ class CostsTableSeeder extends Seeder {
             Cost::create([
                 'title' => $faker->sentence(3),
                 'amount' => $faker->numberBetween(0,200),
-                'description' => $faker->paragraph(20),
+                'description' => $faker->paragraph(10),
 
             ]);
         }

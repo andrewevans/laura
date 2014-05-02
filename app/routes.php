@@ -21,6 +21,8 @@ Route::resource('/','HomeController');
 Route::resource('nerds', 'NerdController');
 Route::resource('projects', 'ProjectsController');
 Route::resource('partnerships', 'PartnershipsController');
+Route::resource('costs', 'CostsController');
+
 /*
 Route::get('/', function()
 {
