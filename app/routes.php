@@ -23,6 +23,9 @@ Route::resource('projects', 'ProjectsController');
 Route::resource('partnerships', 'PartnershipsController');
 Route::resource('costs', 'CostsController');
 
+Route::get('users/{name}', 'UsersController@show');
+Route::get('nerds/{name}', 'NerdController@show');
+
 /*
 Route::get('/', function()
 {
