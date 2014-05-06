@@ -6,7 +6,7 @@
     <h1>Showing {{ $nerd->name }}</h1>
 
     <div class="jumbotron text-center">
-        <h2>{{ $nerd->name }}</h2>
+        <h2>{{ $nerd->name }} of {{ $nerd->location }} ( {{ $nerd->slug }} )</h2>
         <p>
             <strong>Email:</strong> {{ $nerd->email }}<br />
             <strong>Level:</strong> {{ $nerd->nerd_level }}<br />
