@@ -26,6 +26,11 @@
     </div>
 
     <div class="form-group">
+        {{ Form::label('slug', 'Slug') }}
+        {{ Form::text('slug', null, array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
         <p>Projects</p>
         <ul>
             @foreach($all_projects as $project)

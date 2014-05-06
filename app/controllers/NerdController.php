@@ -59,6 +59,7 @@ class NerdController extends \BaseController {
         $nerd->name       = Input::get('name');
         $nerd->email      = Input::get('email');
         $nerd->nerd_level = Input::get('nerd_level');
+        $nerd->slug       = Input::get('slug');
         $nerd->save();
 
         // redirect
@@ -140,6 +141,7 @@ class NerdController extends \BaseController {
         $nerd->name       = Input::get('name');
         $nerd->email      = Input::get('email');
         $nerd->nerd_level = Input::get('nerd_level');
+        $nerd->slug       = Input::get('slug');
         $nerd->projects()->sync(Input::get('project'));
         $nerd->save();
 
