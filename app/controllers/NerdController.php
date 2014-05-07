@@ -142,7 +142,12 @@ class NerdController extends \BaseController {
         $nerd->email      = Input::get('email');
         $nerd->nerd_level = Input::get('nerd_level');
         $nerd->slug       = Input::get('slug');
-        $nerd->projects()->sync(Input::get('project'));
+        if ( ! is_array(Input::get('project'))) {
+            $project = array();
+        } else {
+            $project = Input::get('project');
+        }
+        $nerd->projects()->sync($project);
         $nerd->save();
 
         // redirect
