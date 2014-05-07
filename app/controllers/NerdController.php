@@ -131,7 +131,7 @@ class NerdController extends \BaseController {
 
         $input = Input::all();
 
-        if ( ! $this->nerd->fill($input)->isValid())
+        if ( ! $this->nerd->fill($input)->isValid($id))
         {
             return Redirect::back()->withInput()->withErrors($this->nerd->errors);
         }

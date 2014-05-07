@@ -21,10 +21,13 @@ class Nerd extends Eloquent
      */
     protected $hidden = array('password');
 
+    protected $rules_modified = "required|unique:nerds,slug,";
+
     public static $rules = array(
         'name'       => 'required',
         'email'      => 'required|email',
-        'nerd_level' => 'required|numeric'
+        'nerd_level' => 'required|numeric',
+        'slug'       => '', // slug will error on unique check since it is the same as itself if left unchanged
     );
 
     public static $messages = [
@@ -34,9 +37,12 @@ class Nerd extends Eloquent
 //        'email.email' => "That's not an EMAIL! Try a well-formed email.",
     ];
 
-    public function isValid()
+    public function isValid($id = null)
     {
-        $validation = Validator::make($this->attributes, static::$rules,  static::$messages);
+        $rules_modified = static::$rules;
+        $rules_modified['slug'] = $this->rules_modified . $id;
+
+        $validation = Validator::make($this->attributes, $rules_modified,  static::$messages);
 
         if ($validation->passes()) return true;
 
