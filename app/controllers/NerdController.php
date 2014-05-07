@@ -59,7 +59,7 @@ class NerdController extends \BaseController {
         $nerd->name       = Input::get('name');
         $nerd->email      = Input::get('email');
         $nerd->nerd_level = Input::get('nerd_level');
-        $nerd->slug       = Input::get('slug');
+        $nerd->slug       = $nerd->url_slug(Input::get('slug'));
         $nerd->save();
 
         // redirect
@@ -141,7 +141,7 @@ class NerdController extends \BaseController {
         $nerd->name       = Input::get('name');
         $nerd->email      = Input::get('email');
         $nerd->nerd_level = Input::get('nerd_level');
-        $nerd->slug       = Input::get('slug');
+        $nerd->slug       = $nerd->url_slug(Input::get('slug'));
         if ( ! is_array(Input::get('project'))) {
             $project = array();
         } else {
