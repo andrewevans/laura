@@ -78,16 +78,15 @@ class NerdController extends \BaseController {
 	public function show($slug)
 	{
         if (! is_numeric($slug)) {
-            $nerd = Nerd::whereName($slug)->first();
+            $nerd = Nerd::whereSlug($slug)->first();
             return View::make('nerds.show', ['nerd' => $nerd]);
         }
 
         // get the nerd
         $nerd = Nerd::find($slug);
 
-        // show the view and pass the nerd to it
-        return View::make('nerds.show')
-            ->with('nerd', $nerd);
+        Session::flash('message', 'You were forwarded here from ' . '<b>nerds/' . $slug . '</b>');
+        return Redirect::to('nerds/' . $nerd->slug);
 	}
 
 
