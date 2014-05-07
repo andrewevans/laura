@@ -13,9 +13,14 @@
 //Route::get('users', 'UsersController@index');
 //Route::get('users/{name}', 'UsersController@show');
 
+Route::group(['prefix' => 'people'], function()
+{
+    Route::resource('users','UsersController');
+    Route::get('users/{name}', 'UsersController@show');
+});
+
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
-Route::resource('users','UsersController');
 Route::resource('sessions','SessionsController');
 Route::resource('/','HomeController');
 Route::resource('nerds', 'NerdController');
@@ -23,7 +28,6 @@ Route::resource('projects', 'ProjectsController');
 Route::resource('partnerships', 'PartnershipsController');
 Route::resource('costs', 'CostsController');
 
-Route::get('users/{name}', 'UsersController@show');
 Route::get('nerds/{name}', 'NerdController@show');
 
 /*

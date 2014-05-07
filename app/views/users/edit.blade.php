@@ -5,7 +5,7 @@
 
 
 
-{{ Form::model($user, array('method' => 'put', 'route' => array('users.update', $user->id))) }}
+{{ Form::model($user, array('method' => 'put', 'route' => array('people.users.update', $user->id))) }}
 <div>
     {{ Form::label('username', 'Username: ') }}
     {{ Form::text('username') }}

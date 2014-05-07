@@ -13,8 +13,8 @@
             <a class="navbar-brand" href="{{ URL::to('nerds') }}">Default Stuff!</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('users') }}">View All Users</a></li>
-            <li><a href="{{ URL::to('users/create') }}">Create a User</a>
+            <li><a href="{{ URL::to('people/users') }}">View All Users</a></li>
+            <li><a href="{{ URL::to('people/users/create') }}">Create a User</a>
         </ul>
     </nav>
 

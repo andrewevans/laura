@@ -10,7 +10,7 @@ Email: {{ $user->email }}<br />
 Password (in hash format): {{ $user->password }}<br />
 
 
-{{ Form::model($user, array('method' => 'put', 'route' => array('users.update', $user->username))) }}
+{{ Form::model($user, array('method' => 'put', 'route' => array('people.users.update', $user->username))) }}
 <div>
     {{ Form::label('email', 'Email: ') }}
     {{ Form::text('email') }}

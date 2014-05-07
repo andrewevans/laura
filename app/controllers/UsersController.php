@@ -53,7 +53,7 @@ class UsersController extends \BaseController {
         $user->password = Hash::make(Input::get('password')); // If you want passwords one way hashed
         $user->save();
 
-        return Redirect::route('users.index');
+        return Redirect::route('people.users.index');
 	}
 
 
