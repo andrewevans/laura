@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Look! I'm CRUDding</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
+    {{ HTML::style('css/bootstrap.min.css', array('media' => 'screen')) }}
     {{ HTML::style('css/nerds-default.css', array('media' => 'screen')) }}
 </head>
 <body>
