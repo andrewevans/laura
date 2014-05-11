@@ -10,7 +10,13 @@
         <p>
             <strong>Name:</strong> {{ $project->name }}<br />
             <strong>Cost:</strong> {{ $project->cost }}<br />
-            <strong>Description:</strong> {{ $project->description }}<br />
+            <strong>Description:</strong><br /><br />
+            @foreach($project_descriptions as $project_description)
+            <b>{{ $project_description->title }}</b><br />
+            {{ $project_description->description }}<br /><br>
+            @endforeach
+
+            <br />
             <strong>Nerds partnered with:</strong><br />
             <ul>
                 @foreach ($project->nerds as $nerd)

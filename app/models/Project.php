@@ -21,12 +21,23 @@ class Project extends Eloquent
     );
 
     public static $messages = [
+        'cost.required' => "You need a cost. No free lunches.",
 //        'email.email' => "That's not an EMAIL! Try a well-formed email.",
     ];
 
     public function isValid()
     {
-        $validation = Validator::make($this->attributes, static::$rules,  static::$messages);
+        $validation = Validator::make(
+            array(
+                'name' => $this->attributes['name'],
+                'cost' => $this->attributes['cost'],
+            ),
+            array(
+                'name' => 'required',
+                'cost' => 'required|numeric|min:0',
+            ),
+            static::$messages
+        );
 
         if ($validation->passes()) return true;
 
@@ -38,5 +49,12 @@ class Project extends Eloquent
     {
         return $this->belongsToMany('Nerd','partnerships');
     }
+
+
+    public function project_descriptions()
+    {
+        return $this->hasMany('ProjectDescription', 'project_descriptions','project_id');
+    }
+
 
 }

@@ -3,6 +3,7 @@
 class ProjectsController extends \BaseController {
 
     protected $project;
+    protected $project_descriptions;
 
     public function __construct(Project $project)
     {
@@ -17,10 +18,12 @@ class ProjectsController extends \BaseController {
 	public function index()
 	{
         $projects = $this->project->all();
+        $project_descriptions = ProjectDescription::all();
 
         // load the view and pass the nerds
         return View::make('projects.index')
-            ->with('projects', $projects);
+            ->with('projects', $projects)
+            ->with('project_descriptions', $project_descriptions);
 
     }
 
@@ -76,10 +79,12 @@ class ProjectsController extends \BaseController {
 	{
         // get the nerd
         $projects = Project::find($id);
+        $project_descriptions = ProjectDescription::whereProjectId($id)->get();
 
         // show the view and pass the nerd to it
         return View::make('projects.show')
-            ->with('project', $projects);
+            ->with('project', $projects)
+            ->with('project_descriptions', $project_descriptions);
 	}
 
 
@@ -93,11 +98,13 @@ class ProjectsController extends \BaseController {
 	{
         // get the nerd
         $project = Project::find($id);
+        $project_descriptions = ProjectDescription::whereProjectId($id)->get();
 
         // show the edit form and pass the nerd
         return View::make('projects.edit')
-            ->with('project', $project);
-	}
+            ->with('project', $project)
+            ->with('project_descriptions', $project_descriptions);
+    }
 
 
 	/**
@@ -109,6 +116,7 @@ class ProjectsController extends \BaseController {
 	public function update($id)
 	{
         $project = Project::whereId($id)->first();
+        $project_details = ProjectDescription::whereProjectId($id)->get();
 
         $input = Input::all();
 
@@ -121,7 +129,23 @@ class ProjectsController extends \BaseController {
         //$nerd = Nerd::find($id);
         $project->name       = Input::get('name');
         $project->cost      = Input::get('cost');
-        $project->description = Input::get('description');
+
+        $project_detail = Input::get('project_detail');
+
+        for ($key = 0; $key < count($project_detail); $key++) {
+            $project_details[$key]->title = $project_detail[$key]['title'];
+            $project_details[$key]->description = $project_detail[$key]['description'];
+        }
+
+        foreach ($project_details as $key => $description) {
+
+            if ( ! $project_details[$key]->isValid($key)) {
+                return Redirect::back()->withInput()->withErrors($project_details[$key]->errors);
+            }
+
+            $project_details[$key]->save();
+        }
+
         $project->save();
 
         // redirect

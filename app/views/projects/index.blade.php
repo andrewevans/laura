@@ -20,7 +20,14 @@
         <td>{{ $value->id }}</td>
         <td>{{ $value->name }}</td>
         <td>{{ $value->cost }}</td>
-        <td>{{ $value->description }}</td>
+        <td>
+            @foreach($project_descriptions as $project_description)
+                @if ($value->id == $project_description->project_id)
+                    <b>{{ $project_description->title }}:</b>
+                    <pre>{{ $project_description->description }}</pre>
+                @endif
+            @endforeach
+        </td>
         <td>
             @foreach($value->nerds as $nerd)
             <pre>{{ link_to("/nerds/{$nerd->id}", $nerd->name) }}</pre>
