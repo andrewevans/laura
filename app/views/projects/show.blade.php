@@ -10,10 +10,10 @@
         <p>
             <strong>Name:</strong> {{ $project->name }}<br />
             <strong>Cost:</strong> {{ $project->cost }}<br />
-            <strong>Description:</strong><br /><br />
-            @foreach($project_descriptions as $project_description)
-            <b>{{ $project_description->title }}</b><br />
-            {{ $project_description->description }}<br /><br>
+            <strong>Project Details:</strong><br /><br />
+            @foreach($project_details as $project_detail)
+            <b>{{ $project_detail->title }}</b><br />
+            {{ $project_detail->description }}<br /><br>
             @endforeach
 
             <br />

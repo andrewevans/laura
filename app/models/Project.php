@@ -51,9 +51,9 @@ class Project extends Eloquent
     }
 
 
-    public function project_descriptions()
+    public function project_details()
     {
-        return $this->hasMany('ProjectDescription', 'project_descriptions','project_id');
+        return $this->hasMany('ProjectDetail', 'project_details','project_id');
     }
 
 

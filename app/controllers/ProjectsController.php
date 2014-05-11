@@ -3,7 +3,7 @@
 class ProjectsController extends \BaseController {
 
     protected $project;
-    protected $project_descriptions;
+    protected $project_details;
 
     public function __construct(Project $project)
     {
@@ -18,12 +18,12 @@ class ProjectsController extends \BaseController {
 	public function index()
 	{
         $projects = $this->project->all();
-        $project_descriptions = ProjectDescription::all();
+        $project_details = ProjectDetail::all();
 
         // load the view and pass the nerds
         return View::make('projects.index')
             ->with('projects', $projects)
-            ->with('project_descriptions', $project_descriptions);
+            ->with('project_details', $project_details);
 
     }
 
@@ -79,12 +79,12 @@ class ProjectsController extends \BaseController {
 	{
         // get the nerd
         $projects = Project::find($id);
-        $project_descriptions = ProjectDescription::whereProjectId($id)->get();
+        $project_details = ProjectDetail::whereProjectId($id)->get();
 
         // show the view and pass the nerd to it
         return View::make('projects.show')
             ->with('project', $projects)
-            ->with('project_descriptions', $project_descriptions);
+            ->with('project_details', $project_details);
 	}
 
 
@@ -98,12 +98,12 @@ class ProjectsController extends \BaseController {
 	{
         // get the nerd
         $project = Project::find($id);
-        $project_descriptions = ProjectDescription::whereProjectId($id)->get();
+        $project_details = ProjectDetail::whereProjectId($id)->get();
 
         // show the edit form and pass the nerd
         return View::make('projects.edit')
             ->with('project', $project)
-            ->with('project_descriptions', $project_descriptions);
+            ->with('project_details', $project_details);
     }
 
 
@@ -116,7 +116,7 @@ class ProjectsController extends \BaseController {
 	public function update($id)
 	{
         $project = Project::whereId($id)->first();
-        $project_details = ProjectDescription::whereProjectId($id)->get();
+        $project_details = ProjectDetail::whereProjectId($id)->get();
 
         $input = Input::all();
 

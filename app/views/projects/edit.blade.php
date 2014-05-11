@@ -21,15 +21,15 @@
         <span>{{ $errors->first('cost') }}</span>
     </div>
     <div class="form-group">
-        <p>Descriptions</p>
+        <p>Project Details</p>
         <ul>
-            @foreach($project_descriptions as $key => $project_description)
+            @foreach($project_details as $key => $project_detail)
             <li>
-                {{ Form::label('project_detail[' . $key . '][title]', 'Title: ') }}
-                {{ Form::text('project_detail[' . $key . '][title]', $project_description->title, array('class' => 'form-control')) }}
+                {{ Form::label('project_detail[' . $key . '][title]', 'Detail Title: ') }}
+                {{ Form::text('project_detail[' . $key . '][title]', $project_detail->title, array('class' => 'form-control')) }}
 
-                {{ Form::label('project_detail[' . $key . '][description]', 'Description: ') }}
-                {{ Form::text('project_detail[' . $key . '][description]', $project_description->description, array('class' => 'form-control')) }}
+                {{ Form::label('project_detail[' . $key . '][description]', 'Detail Description: ') }}
+                {{ Form::text('project_detail[' . $key . '][description]', $project_detail->description, array('class' => 'form-control')) }}
             </li>
             @endforeach
         </ul>

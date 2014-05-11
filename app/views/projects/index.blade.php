@@ -9,7 +9,7 @@
         <td>ID</td>
         <td>Project name</td>
         <td>Cost</td>
-        <td width="200">Description</td>
+        <td width="200">Project Details</td>
         <td>Nerds involved</td>
         <td>Actions</td>
     </tr>
@@ -21,10 +21,10 @@
         <td>{{ $value->name }}</td>
         <td>{{ $value->cost }}</td>
         <td>
-            @foreach($project_descriptions as $project_description)
-                @if ($value->id == $project_description->project_id)
-                    <b>{{ $project_description->title }}:</b>
-                    <pre>{{ $project_description->description }}</pre>
+            @foreach($project_details as $project_detail)
+                @if ($value->id == $project_detail->project_id)
+                    <b>{{ $project_detail->title }}:</b>
+                    <pre>{{ $project_detail->description }}</pre>
                 @endif
             @endforeach
         </td>

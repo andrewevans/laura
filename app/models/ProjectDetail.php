@@ -1,7 +1,7 @@
 <?php
-// app/models/ProjectDescription.php
+// app/models/ProjectDetail.php
 
-class ProjectDescription extends Eloquent
+class ProjectDetail extends Eloquent
 {
     public $timestamp = false;
 
@@ -10,7 +10,7 @@ class ProjectDescription extends Eloquent
      *
      * @var string
      */
-    protected $table = 'project_descriptions';
+    protected $table = 'project_details';
 
     protected $fillable = ['project_id','title','description'];
 
