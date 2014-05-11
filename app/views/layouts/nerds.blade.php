@@ -5,6 +5,7 @@
 <!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
     {{ HTML::style('css/bootstrap.min.css', array('media' => 'screen')) }}
     {{ HTML::style('css/nerds-default.css', array('media' => 'screen')) }}
+    {{ HTML::script('js/ckeditor/ckeditor.js?2') }}
 </head>
 <body>
 <div class="container">
@@ -32,5 +33,10 @@
 
 
 </div>
+
+<script>
+    CKEDITOR.replaceAll();
+</script>
+
 </body>
 </html>
