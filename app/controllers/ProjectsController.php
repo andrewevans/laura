@@ -57,7 +57,7 @@ class ProjectsController extends \BaseController {
 
         // store
         $project = new Project;
-        $project->name       = Input::get('name');
+        $project->name       = trim(strip_tags(Input::get('name')));
         $project->cost      = Input::get('cost');
         $project->description = Input::get('description');
         $project->save();
@@ -127,13 +127,13 @@ class ProjectsController extends \BaseController {
 
         // store
         //$nerd = Nerd::find($id);
-        $project->name       = Input::get('name');
+        $project->name       = trim(strip_tags(Input::get('name')));
         $project->cost      = Input::get('cost');
 
         $project_detail = Input::get('project_detail');
 
         for ($key = 0; $key < count($project_detail); $key++) {
-            $project_details[$key]->title = $project_detail[$key]['title'];
+            $project_details[$key]->title = trim(strip_tags($project_detail[$key]['title']));
             $project_details[$key]->description = $project_detail[$key]['description'];
         }
 
