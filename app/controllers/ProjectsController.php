@@ -59,7 +59,6 @@ class ProjectsController extends \BaseController {
         $project = new Project;
         $project->name       = trim(strip_tags(Input::get('name')));
         $project->cost      = Input::get('cost');
-        $project->description = Input::get('description');
         $project->save();
 
         // redirect

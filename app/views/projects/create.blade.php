@@ -20,11 +20,6 @@
         {{ Form::text('cost', Input::old('cost'), array('class' => 'form-control')) }}
     </div>
 
-    <div class="form-group">
-        {{ Form::label('description', 'Description') }}
-        {{ Form::text('description', Input::old('cost'), array('class' => 'form-control')) }}
-    </div>
-
     {{ Form::submit('Create the PROJECT!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
