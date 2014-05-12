@@ -12,7 +12,7 @@
 
     <div class="form-group">
         {{ Form::label('name', 'Name: ') }}
-        {{ Form::textarea('name', null, array('class' => 'form-control dog')) }}
+        {{ Form::textarea('name', null, array('class' => 'form-control')) }}
         <span>{{ $errors->first('name') }}</span>
     </div>
     <div class="form-group">
@@ -29,7 +29,7 @@
                 {{ Form::textarea('project_detail[' . $key . '][title]', $project_detail->title, array('class' => 'form-control')) }}
 
                 {{ Form::label('project_detail[' . $key . '][description]', 'Detail Description: ') }}
-                {{ Form::textarea('project_detail[' . $key . '][description]', $project_detail->description, array('class' => 'form-control dog')) }}
+                {{ Form::textarea('project_detail[' . $key . '][description]', $project_detail->description, array('class' => 'form-control')) }}
             </li>
             @endforeach
         </ul>
