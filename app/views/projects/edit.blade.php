@@ -37,6 +37,12 @@
         <span>{{ $errors->first('description') }}</span>
     </div>
 
+    <ul>
+        <li>
+            {{ $project_details_create }}
+        </li>
+    </ul>
+
     <div>
         {{ Form::submit('Update PROJECT', array('class' => 'btn btn-primary')) }}
     </div>

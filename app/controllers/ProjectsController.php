@@ -102,7 +102,8 @@ class ProjectsController extends \BaseController {
         // show the edit form and pass the nerd
         return View::make('projects.edit')
             ->with('project', $project)
-            ->with('project_details', $project_details);
+            ->with('project_details', $project_details)
+            ->nest('project_details_create', 'project_details.create');
     }
 
 
@@ -131,7 +132,14 @@ class ProjectsController extends \BaseController {
 
         $project_detail = Input::get('project_detail');
 
+        if (Input::get('project_detail_new')['title'] != '' || Input::get('project_detail_new')['description'] != '') {
+            $project_detail[] = Input::get('project_detail_new');
+            $project_details[] = new ProjectDetail;
+        }
+
+
         for ($key = 0; $key < count($project_detail); $key++) {
+            $project_details[$key]->project_id = $id;
             $project_details[$key]->title = trim(strip_tags($project_detail[$key]['title']));
             $project_details[$key]->description = $project_detail[$key]['description'];
         }
