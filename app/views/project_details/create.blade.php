@@ -7,5 +7,5 @@
 
     <div class="form-group">
         {{ Form::label('project_detail_new[description]', 'NEW Detail Description: ') }}
-        {{ Form::textarea('project_detail_new[description]', Input::old('project_detail_new[description]'), array('class' => 'form-control dog')) }}
+        {{ Form::textarea('project_detail_new[description]', Input::old('project_detail_new[description]'), array('class' => 'form-control')) }}
     </div>
