@@ -2,11 +2,12 @@
 
 class ProjectDetailsController extends \BaseController {
 
+    protected $project;
     protected $project_details;
 
-    public function __construct(ProjectDetail $project_detail)
+    public function __construct(Project $project)
     {
-        $this->project_detail = $project_detail;
+        $this->project = $project;
     }
 
 

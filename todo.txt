@@ -1,1 +1,3 @@
 SEO-friendly URLS with ONE url, where /controller/action forwards to /alias
+
+pd should be created with the ability to start with specific id in constructor so you dont have to pass it around all the time

@@ -126,7 +126,6 @@ class ProjectsController extends \BaseController {
         }
 
         // store
-        //$nerd = Nerd::find($id);
         $project->name       = trim(strip_tags(Input::get('name')));
         $project->cost      = Input::get('cost');
 
@@ -134,23 +133,11 @@ class ProjectsController extends \BaseController {
 
         if (Input::get('project_detail_new')['title'] != '' || Input::get('project_detail_new')['description'] != '') {
             $project_detail[] = Input::get('project_detail_new');
-            $project_details[] = new ProjectDetail;
+            $this->project_detail_create($id, $project_details, $project_detail);
         }
 
-
-        for ($key = 0; $key < count($project_detail); $key++) {
-            $project_details[$key]->project_id = $id;
-            $project_details[$key]->title = trim(strip_tags($project_detail[$key]['title']));
-            $project_details[$key]->description = $project_detail[$key]['description'];
-        }
-
-        foreach ($project_details as $key => $description) {
-
-            if ( ! $project_details[$key]->isValid($key)) {
-                return Redirect::back()->withInput()->withErrors($project_details[$key]->errors);
-            }
-
-            $project_details[$key]->save();
+        if ( ! $this->project_detail_update($id, $project_details, $project_detail)) {
+            return Redirect::back()->withInput()->withErrors($this->project->errors);
         }
 
         $project->save();
@@ -171,6 +158,35 @@ class ProjectsController extends \BaseController {
 	{
 		//
 	}
+
+    public function project_detail_create($id, $project_details, $project_detail)
+    {
+        $project_details[] = new ProjectDetail;
+
+        return $project_details;
+    }
+
+
+    public function project_detail_update($id, $project_details, $project_detail)
+    {
+        for ($key = 0; $key < count($project_detail); $key++) {
+            $project_details[$key]->project_id = $id;
+            $project_details[$key]->title = trim(strip_tags($project_detail[$key]['title']));
+            $project_details[$key]->description = $project_detail[$key]['description'];
+        }
+
+        foreach ($project_details as $key => $description) {
+
+            if ( ! $project_details[$key]->isValid($key)) {
+                $this->project->errors = $project_details[$key]->errors;
+                return false;
+            }
+
+            $project_details[$key]->save();
+        }
+
+        return $project_details;
+    }
 
 
 }
